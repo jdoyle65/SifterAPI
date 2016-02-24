@@ -1,4 +1,7 @@
-<?php namespace Sifter;
+<?php namespace Sifter\Model;
+
+use Sifter\Resource\IssuesResource;
+use Sifter\SifterCurl;
 
 class Project {
     private $name;
@@ -100,8 +103,7 @@ class Project {
         if($curl->error) {
             throw new \Exception('cURL GET failed with code '.$curl->error_code);
         } else {
-            // TODO: Create an IssueResults class and return that (should contain list of Issues as well as other info such as 'page'
-            return json_decode($curl->response);
+            return IssuesResource::issuesResourceFromJson($curl->response);
         }
     }
 
