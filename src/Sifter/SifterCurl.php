@@ -6,6 +6,7 @@ class SifterCurl {
     private static $instance;
     private $apiKey;
     private $apiSubdomain;
+    private $apiBaseUrl;
     private $curl;
 
     public static function instance()
@@ -17,9 +18,10 @@ class SifterCurl {
         return static::$instance;
     }
 
-    public function setApiInformation($apiKey, $apiSubdomain) {
+    public function setApiInformation($apiKey, $apiSubdomain, $apiBaseUrl) {
         $this->apiKey = $apiKey;
         $this->apiSubdomain = $apiSubdomain;
+        $this->apiBaseUrl = $apiBaseUrl;
         $this->curl = new Curl();
         $this->curl->setHeader('X-Sifter-Token', $apiKey);
         $this->curl->setHeader('Accept', 'application/json');
@@ -27,6 +29,10 @@ class SifterCurl {
 
     public function getCurl() {
         return $this->curl;
+    }
+
+    public function getBaseUrl() {
+        return $this->getBaseUrl();
     }
 
 

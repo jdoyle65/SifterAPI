@@ -17,7 +17,7 @@ class Sifter
         $this->subdomain = $sifterSubdomain;
         $this->apiBaseUrl = 'https://' . $sifterSubdomain . '.sifterapp.com/api/';
         $sifterCurl = SifterCurl::instance();
-        $sifterCurl->setApiInformation($apiKey, $sifterSubdomain);
+        $sifterCurl->setApiInformation($apiKey, $sifterSubdomain, $this->apiBaseUrl);
         $this->curl = $sifterCurl->getCurl();
     }
 
@@ -62,7 +62,7 @@ class Sifter
         $this->curl->get($url);
 
         if ($this->curl->error) {
-            return $this->curl->error_code;
+            throw new \Exception('cURL GET failed with code '.$this->curl->error_code);
         } else {
             $projects = [];
             $json = json_decode($this->curl->response);

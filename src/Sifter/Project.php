@@ -13,6 +13,8 @@ class Project {
     private $apiCategoriesUrl;
     private $apiPeopleUrl;
 
+    private $curl;
+
     /**
      * Project constructor.
      * @param $name
@@ -89,6 +91,18 @@ class Project {
     public function getMilestonesUrl()
     {
         return $this->milestonesUrl;
+    }
+
+    public function issues() {
+        $curl = SifterCurl::instance()->getCurl();
+        $curl->get($this->apiIssuesUrl);
+
+        if($curl->error) {
+            throw new \Exception('cURL GET failed with code '.$curl->error_code);
+        } else {
+            // TODO: Create an IssueResults class and return that (should contain list of Issues as well as other info such as 'page'
+            return json_decode($curl->response);
+        }
     }
 
 
