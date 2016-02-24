@@ -1,0 +1,39 @@
+
+{
+  "name": "jdoyle/sifter",
+  "type": "library",
+  "description": "An API library for Sifter App",
+  "keywords": [
+    "sifter",
+    "app"
+  ],
+  "homepage": "https://github.com/jdoyle65/SifterAPI",
+  "support": {
+    "issues": "https://github.com/jdoyle65/SifterAPI/issues",
+    "source": "https://github.com/jdoyle65/SifterAPI"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Justin Doyle",
+      "email": "justin@justindoyle.ca",
+      "homepage": "http://justindoyle.ca"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0|~5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sifter\\": "src/Sifter/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
+}
