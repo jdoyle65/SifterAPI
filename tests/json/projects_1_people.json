@@ -1,0 +1,20 @@
+{
+  "people": [
+    {
+      "username": "gdimon",
+      "first_name": "Garrett",
+      "last_name": "Dimon",
+      "email": "garrett@nextupdate.com",
+      "issues_url": "https://example.sifterapp.com/projects/1/issues?a=1",
+      "api_issues_url": "https://example.sifterapp.com/api/projects/1/issues?a=1"
+    },
+    {
+      "username": "akeys",
+      "first_name": "Adam",
+      "last_name": "Keys",
+      "email": "adam@nextupdate.com",
+      "issues_url": "https://example.sifterapp.com/projects/1/issues?a=2",
+      "api_issues_url": "https://example.sifterapp.com/api/projects/1/issues?a=2"
+    }
+  ]
+}

@@ -2,10 +2,22 @@
 
 use Curl\Curl;
 
+/**
+ * Class SifterCurl
+ * @package Sifter
+ */
 class SifterCurl extends Curl {
 
+    /**
+     * @var string
+     */
     private $baseUrl = '';
 
+    /**
+     * SifterCurl constructor.
+     * @param $apiKey
+     * @param $apiSubdomain
+     */
     public function __construct($apiKey, $apiSubdomain)
     {
         parent::__construct();
@@ -14,7 +26,11 @@ class SifterCurl extends Curl {
         $this->setHeader('Accept', 'application/json');
     }
 
+    /**
+     * @return string
+     */
     public function getBaseUrl() {
         return $this->baseUrl;
     }
+
 }

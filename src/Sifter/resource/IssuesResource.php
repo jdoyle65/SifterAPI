@@ -1,5 +1,6 @@
 <?php namespace Sifter\Resource;
 
+use Sifter\JsonObjectHelpers;
 use Sifter\Model\Issue;
 
 class IssuesResource extends Resource {
@@ -92,17 +93,7 @@ class IssuesResource extends Resource {
      * @return IssuesResource
      */
     public static function issuesResourceFromJson($json) {
-        if(is_string($json)) {
-            $json = json_decode($json);
-        }
-        return new IssuesResource(
-            $json->issues,
-            $json->page,
-            $json->per_page,
-            $json->total_pages,
-            $json->next_page_url,
-            $json->previous_page_url
-        );
+        return JsonObjectHelpers::toIssuesResource($json);
     }
 
     /**
@@ -117,15 +108,7 @@ class IssuesResource extends Resource {
         if($curl->error) {
             throw new \Exception('cURL GET failed with code '.$curl->error_code);
         } else {
-            $json = json_decode($curl->response);
-            return new IssuesResource(
-                $json->issues,
-                $json->page,
-                $json->per_page,
-                $json->total_pages,
-                $json->next_page_url,
-                $json->previous_page_url
-            );
+           return JsonObjectHelpers::toIssuesResource($curl->response);
         }
     }
 

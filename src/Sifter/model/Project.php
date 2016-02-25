@@ -1,5 +1,6 @@
 <?php namespace Sifter\Model;
 
+use Sifter\JsonObjectHelpers;
 use Sifter\Resource\IssuesResource;
 use Sifter\Sifter;
 use Sifter\SifterCurl;
@@ -16,8 +17,6 @@ class Project {
     private $apiMilestonesUrl;
     private $apiCategoriesUrl;
     private $apiPeopleUrl;
-
-    private $curl;
 
     /**
      * Project constructor.
@@ -105,6 +104,39 @@ class Project {
             throw new \Exception('cURL GET failed with code '.$curl->error_code);
         } else {
             return IssuesResource::issuesResourceFromJson($curl->response);
+        }
+    }
+
+    public function milestones() {
+        $curl = Sifter::curl();
+        $curl->get($this->apiMilestonesUrl);
+
+        if($curl->error) {
+            throw new \Exception('cURL GET failed with code '.$curl->error_code);
+        } else {
+            return JsonObjectHelpers::toMilestonesArray($curl->response);
+        }
+    }
+
+    public function categories() {
+        $curl = Sifter::curl();
+        $curl->get($this->apiCategoriesUrl);
+
+        if($curl->error) {
+            throw new \Exception('cURL GET failed with code '.$curl->error_code);
+        } else {
+            return JsonObjectHelpers::toCategoriesArray($curl->response);
+        }
+    }
+
+    public function people() {
+        $curl = Sifter::curl();
+        $curl->get($this->apiPeopleUrl);
+
+        if($curl->error) {
+            throw new \Exception('cURL GET failed with code '.$curl->error_code);
+        } else {
+            return JsonObjectHelpers::toPeopleArray($curl->response);
         }
     }
 

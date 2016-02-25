@@ -1,0 +1,14 @@
+{
+  "categories": [
+    {
+      "name": "Bugs",
+      "issues_url": "https://example.sifterapp.com/projects/1/issues?c=1",
+      "api_issues_url": "https://example.sifterapp.com/api/projects/1/issues?c=1"
+    },
+    {
+      "name": "Issues",
+      "issues_url": "https://example.sifterapp.com/projects/1/issues?c=2",
+      "api_issues_url": "https://example.sifterapp.com/api/projects/1/issues?c=2"
+    }
+  ]
+}
