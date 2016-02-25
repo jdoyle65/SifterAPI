@@ -2,10 +2,11 @@
 {
   "name": "jdoyle/sifter",
   "type": "library",
-  "description": "An API library for Sifter App",
+  "description": "An API library for SifterApp.com",
   "keywords": [
     "sifter",
-    "app"
+    "app",
+    "api"
   ],
   "homepage": "https://github.com/jdoyle65/SifterAPI",
   "support": {
