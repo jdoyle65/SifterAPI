@@ -11,9 +11,9 @@ class Issue {
     private $description;
     private $milestoneName;
     private $openerName;
-    private $openeremail;
+    private $openerEmail;
     private $assigneeName;
-    private $assigneeNmail;
+    private $assigneeEmail;
     private $status;
     private $commentCount;
     private $attachmentCount;
@@ -22,7 +22,6 @@ class Issue {
     private $url;
     private $apiUrl;
 
-    private $curl;
 
     /**
      * Issue constructor.
@@ -33,9 +32,9 @@ class Issue {
      * @param $description
      * @param $milestoneName
      * @param $openerName
-     * @param $openerNmail
+     * @param $openerEmail
      * @param $assigneeName
-     * @param $assigneeNmail
+     * @param $assigneeEmail
      * @param $status
      * @param $commentCount
      * @param $attachmentCount

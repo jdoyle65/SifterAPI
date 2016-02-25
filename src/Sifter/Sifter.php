@@ -1,7 +1,7 @@
 <?php namespace Sifter;
 
-use Curl\Curl;
-use Sifter\Model\Project;
+
+
 
 class Sifter
 {

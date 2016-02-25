@@ -1,8 +1,8 @@
 <?php namespace Tests\Sifter;
 
 
-use Curl\Curl;
-use josegonzalez\Dotenv\Loader;
+
+
 use Sifter\Resource\IssuesResource;
 use Sifter\Sifter;
 

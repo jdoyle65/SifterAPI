@@ -2,6 +2,7 @@
 
 use Sifter\JsonObjectHelpers;
 use Sifter\Model\Issue;
+use Sifter\Sifter;
 
 class IssuesResource extends Resource {
     /**

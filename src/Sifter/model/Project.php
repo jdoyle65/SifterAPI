@@ -3,7 +3,7 @@
 use Sifter\JsonObjectHelpers;
 use Sifter\Resource\IssuesResource;
 use Sifter\Sifter;
-use Sifter\SifterCurl;
+
 
 class Project {
     private $name;
