@@ -13,10 +13,8 @@ install:
   - travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.xml
+  - vendor/bin/phpunit --verbose
 
-after_success:
-  - codecov
 
 matrix:
   allow_failures:

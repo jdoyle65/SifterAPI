@@ -206,7 +206,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
     private function setUpSifterCurlMock()
     {
         $this->sifterCurlMock = $this->getMockBuilder('Sifter\SifterCurl')
-            ->setConstructorArgs([self::$apiKey, self::$apiSubdomain])
+            ->setConstructorArgs(array(self::$apiKey, self::$apiSubdomain))
             ->getMock();
         $this->sifterCurlMock
             ->method('getBaseUrl')

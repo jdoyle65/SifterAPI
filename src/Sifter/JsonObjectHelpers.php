@@ -34,7 +34,7 @@ class JsonObjectHelpers {
             $json = json_decode($json);
         }
 
-        $projects = [];
+        $projects = array();
         if ( ! isset($json->projects) || ! is_array($json->projects)) {
             throw new \Exception('Projects were not returned');
         } else {
@@ -75,7 +75,7 @@ class JsonObjectHelpers {
         if(is_string($json)) {
             $json = json_decode($json);
         }
-        $milestones = [];
+        $milestones = array();
 
         if ( ! isset($json->milestones) || ! is_array($json->milestones)) {
             throw new \Exception('Milestones were not returned');
@@ -102,7 +102,7 @@ class JsonObjectHelpers {
         if(is_string($json)) {
             $json = json_decode($json);
         }
-        $categories = [];
+        $categories = array();
 
         if ( ! isset($json->categories) || ! is_array($json->categories)) {
             throw new \Exception('Categories were not returned');
@@ -132,7 +132,7 @@ class JsonObjectHelpers {
         if(is_string($json)) {
             $json = json_decode($json);
         }
-        $people = [];
+        $people = array();
 
         if ( ! isset($json->people) || ! is_array($json->people)) {
             throw new \Exception('People were not returned');

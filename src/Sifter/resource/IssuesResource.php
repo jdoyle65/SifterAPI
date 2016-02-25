@@ -23,7 +23,7 @@ class IssuesResource extends Resource {
     public function __construct(array $issues, $page, $perPage, $totalPages, $nextPageUrl, $previousPageUrl)
     {
         parent::__construct($page, $perPage, $totalPages, $nextPageUrl, $previousPageUrl);
-        $issueObjects = [];
+        $issueObjects = array();
         foreach($issues as $issue) {
             $issueObjects[] = new Issue(
                 $issue->number,
