@@ -162,39 +162,42 @@ class SifterTest extends \PHPUnit_Framework_TestCase
     }
 
     private function createSifterCurlCallbackClosure() {
-        return function() {
+        $sifterCurlMock = $this->sifterCurlMock;
+        $baseUrl = self::$baseUrl;
+
+        return function() use ($baseUrl, $sifterCurlMock) {
             $args = func_get_args();
             $url = $args[0];
             switch ($url) {
 
-                case self::$baseUrl . 'projects':
-                    $this->sifterCurlMock->response = $this->jsonTestString('projects.json');
-                    $this->sifterCurlMock->error = 0;
+                case $baseUrl . 'projects':
+                    $sifterCurlMock->response = $this->jsonTestString('projects.json');
+                    $sifterCurlMock->error = 0;
                     break;
 
-                case self::$baseUrl . 'projects/1/issues':
-                    $this->sifterCurlMock->response = $this->jsonTestString('projects_1_issues.json');
-                    $this->sifterCurlMock->error = 0;
+                case $baseUrl . 'projects/1/issues':
+                    $sifterCurlMock->response = $this->jsonTestString('projects_1_issues.json');
+                    $sifterCurlMock->error = 0;
                     break;
 
-                case self::$baseUrl . 'projects/1';
-                    $this->sifterCurlMock->response = $this->jsonTestString('projects_1.json');
-                    $this->sifterCurlMock->error = 0;
+                case $baseUrl . 'projects/1';
+                    $sifterCurlMock->response = $this->jsonTestString('projects_1.json');
+                    $sifterCurlMock->error = 0;
                     break;
 
-                case self::$baseUrl . 'projects/1/milestones':
-                    $this->sifterCurlMock->response = $this->jsonTestString('projects_1_milestones.json');
-                    $this->sifterCurlMock->error = 0;
+                case $baseUrl . 'projects/1/milestones':
+                    $sifterCurlMock->response = $this->jsonTestString('projects_1_milestones.json');
+                    $sifterCurlMock->error = 0;
                     break;
 
-                case self::$baseUrl . 'projects/1/categories':
-                    $this->sifterCurlMock->response = $this->jsonTestString('projects_1_categories.json');
-                    $this->sifterCurlMock->error = 0;
+                case $baseUrl . 'projects/1/categories':
+                    $sifterCurlMock->response = $this->jsonTestString('projects_1_categories.json');
+                    $sifterCurlMock->error = 0;
                     break;
 
-                case self::$baseUrl . 'projects/1/people':
-                    $this->sifterCurlMock->response = $this->jsonTestString('projects_1_people.json');
-                    $this->sifterCurlMock->error = 0;
+                case $baseUrl . 'projects/1/people':
+                    $sifterCurlMock->response = $this->jsonTestString('projects_1_people.json');
+                    $sifterCurlMock->error = 0;
                     break;
 
                 default:
