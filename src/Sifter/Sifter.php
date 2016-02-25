@@ -5,66 +5,35 @@ use Sifter\Model\Project;
 
 class Sifter
 {
-    private $apiBaseUrl;
-    private $curl;
+    static protected $curl = null;
 
-    private $PROJECTS_URL = 'projects/';
+    const PROJECTS_URL = 'projects';
 
 
-    public function __construct($apiKey, $sifterSubdomain)
+    public function __construct(SifterCurl $curl = null)
     {
-        $this->apiKey = $apiKey;
-        $this->subdomain = $sifterSubdomain;
-        $this->apiBaseUrl = 'https://' . $sifterSubdomain . '.sifterapp.com/api/';
-        $sifterCurl = SifterCurl::instance();
-        $sifterCurl->setApiInformation($apiKey, $sifterSubdomain, $this->apiBaseUrl);
-        $this->curl = $sifterCurl->getCurl();
+        self::$curl = $curl;
     }
 
-    private function allProjectsUrl()
-    {
-        return $this->apiBaseUrl . $this->PROJECTS_URL;
+    public static function curl() {
+        return self::$curl;
     }
 
     private function projectUrl($projectId)
     {
-        return $this->apiBaseUrl . $this->PROJECTS_URL . $projectId;
+        return Sifter::curl()->getBaseUrl().self::PROJECTS_URL . $projectId;
     }
 
-    /**
-     * @return string
-     */
-    public function getApiBaseUrl()
+    public function allProjects($all = false)
     {
-        return $this->apiBaseUrl;
-    }
+        $url = Sifter::curl()->getBaseUrl().self::PROJECTS_URL;
+        if($all) { $url.'?all=true'; }
+        Sifter::curl()->get(Sifter::curl()->getBaseUrl().self::PROJECTS_URL);
 
-    /**
-     * @return array
-     */
-    public function getHeaders()
-    {
-        return $this->apiHeaders;
-    }
-
-    public function getHeader($header)
-    {
-        if (isset($this->apiHeaders[$header])) {
-            return $this->apiHeaders[$header];
+        if (Sifter::curl()->error) {
+            throw new \Exception('cURL GET failed with code ' . Sifter::curl()->error_code);
         } else {
-            return null;
-        }
-    }
-
-    public function allProjects()
-    {
-        $url = $this->allProjectsUrl();
-        $this->curl->get($url);
-
-        if ($this->curl->error) {
-            throw new \Exception('cURL GET failed with code ' . $this->curl->error_code);
-        } else {
-            $projects = $this->jsonToProjects(json_decode($this->curl->response));
+            $projects = $this->jsonToProjects(json_decode(Sifter::curl()->response));
             return $projects;
         }
     }

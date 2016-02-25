@@ -11,7 +11,7 @@ class Issue {
     private $description;
     private $milestoneName;
     private $openerName;
-    private $openerNmail;
+    private $openeremail;
     private $assigneeName;
     private $assigneeNmail;
     private $status;
@@ -44,7 +44,7 @@ class Issue {
      * @param $url
      * @param $apiUrl
      */
-    public function __construct($number, $categoryName, $priority, $subject, $description, $milestoneName, $openerName, $openerNmail, $assigneeName, $assigneeNmail, $status, $commentCount, $attachmentCount, $createdAt, $updatedAt, $url, $apiUrl)
+    public function __construct($number, $categoryName, $priority, $subject, $description, $milestoneName, $openerName, $openerEmail, $assigneeName, $assigneeEmail, $status, $commentCount, $attachmentCount, $createdAt, $updatedAt, $url, $apiUrl)
     {
         $this->number = $number;
         $this->categoryName = $categoryName;
@@ -53,9 +53,9 @@ class Issue {
         $this->description = $description;
         $this->milestoneName = $milestoneName;
         $this->openerName = $openerName;
-        $this->openerNmail = $openerNmail;
+        $this->openerEmail = $openerEmail;
         $this->assigneeName = $assigneeName;
-        $this->assigneeNmail = $assigneeNmail;
+        $this->assigneeEmail = $assigneeEmail;
         $this->status = $status;
         $this->commentCount = $commentCount;
         $this->attachmentCount = $attachmentCount;
@@ -124,9 +124,9 @@ class Issue {
     /**
      * @return mixed
      */
-    public function getOpenerNmail()
+    public function getOpenerEmail()
     {
-        return $this->openerNmail;
+        return $this->openerEmail;
     }
 
     /**
@@ -140,9 +140,9 @@ class Issue {
     /**
      * @return mixed
      */
-    public function getAssigneeNmail()
+    public function getAssigneeEmail()
     {
-        return $this->assigneeNmail;
+        return $this->assigneeEmail;
     }
 
     /**

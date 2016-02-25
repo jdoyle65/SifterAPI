@@ -1,6 +1,7 @@
 <?php namespace Sifter\Model;
 
 use Sifter\Resource\IssuesResource;
+use Sifter\Sifter;
 use Sifter\SifterCurl;
 
 class Project {
@@ -97,7 +98,7 @@ class Project {
     }
 
     public function issues() {
-        $curl = SifterCurl::instance()->getCurl();
+        $curl = Sifter::curl();
         $curl->get($this->apiIssuesUrl);
 
         if($curl->error) {

@@ -2,49 +2,19 @@
 
 use Curl\Curl;
 
-class SifterCurl {
-    private static $instance;
-    private $apiKey;
-    private $apiSubdomain;
-    private $apiBaseUrl;
-    private $curl;
+class SifterCurl extends Curl {
 
-    public static function instance()
+    private $baseUrl = '';
+
+    public function __construct($apiKey, $apiSubdomain)
     {
-        if (static::$instance === null) {
-            static::$instance = new static();
-        }
-
-        return static::$instance;
-    }
-
-    public function setApiInformation($apiKey, $apiSubdomain, $apiBaseUrl) {
-        $this->apiKey = $apiKey;
-        $this->apiSubdomain = $apiSubdomain;
-        $this->apiBaseUrl = $apiBaseUrl;
-        $this->curl = new Curl();
-        $this->curl->setHeader('X-Sifter-Token', $apiKey);
-        $this->curl->setHeader('Accept', 'application/json');
-    }
-
-    public function getCurl() {
-        return $this->curl;
+        parent::__construct();
+        $this->baseUrl = 'https://' . $apiSubdomain . '.sifterapp.com/api/';
+        $this->setHeader('X-Sifter-Token', $apiKey);
+        $this->setHeader('Accept', 'application/json');
     }
 
     public function getBaseUrl() {
-        return $this->getBaseUrl();
-    }
-
-
-    protected function __construct()
-    {
-    }
-
-    private function __clone()
-    {
-    }
-
-    private function __wakeup()
-    {
+        return $this->baseUrl;
     }
 }

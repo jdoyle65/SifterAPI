@@ -111,7 +111,7 @@ class IssuesResource extends Resource {
      * @throws \Exception
      */
     private function changePage($pageUrl) {
-        $curl = SifterCurl::instance()->getCurl();
+        $curl = Sifter::curl();
         $curl->get($pageUrl);
 
         if($curl->error) {

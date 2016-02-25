@@ -1,0 +1,13 @@
+{
+  "name": "Elephant",
+  "primary_company_name": "Apple",
+  "archived": false,
+  "url": "https://example.sifterapp.com/projects/1",
+  "issues_url": "https://example.sifterapp.com/projects/1/issues",
+  "milestones_url": "https://example.sifterapp.com/projects/1/milestones",
+  "api_url": "https://example.sifterapp.com/api/projects/1",
+  "api_issues_url": "https://example.sifterapp.com/api/projects/1/issues",
+  "api_milestones_url": "https://example.sifterapp.com/api/projects/1/milestones",
+  "api_categories_url": "https://example.sifterapp.com/api/projects/1/categories",
+  "api_people_url": "https://example.sifterapp.com/api/projects/1/people"
+}
