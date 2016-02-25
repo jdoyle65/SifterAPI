@@ -161,7 +161,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    private function createSifterCurlCallbackClosure() {
+    public function createSifterCurlCallbackClosure() {
         $sifterCurlMock = $this->sifterCurlMock;
         $baseUrl = self::$baseUrl;
         $that = $this;
@@ -207,7 +207,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         };
     }
 
-    private function setUpSifterCurlMock()
+    public function setUpSifterCurlMock()
     {
         $this->sifterCurlMock = $this->getMockBuilder('Sifter\SifterCurl')
             ->setConstructorArgs(array(self::$apiKey, self::$apiSubdomain))
@@ -225,7 +225,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnCallback($sifterCurlCallback));
     }
 
-    private function jsonTestString($filename)
+    public function jsonTestString($filename)
     {
         return file_get_contents(__DIR__ . '/../json/' . $filename);
     }
