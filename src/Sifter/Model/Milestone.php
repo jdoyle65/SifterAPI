@@ -2,6 +2,10 @@
 
 use Carbon\Carbon;
 
+/**
+ * Class Milestone
+ * @package Sifter\Model
+ */
 class Milestone {
     private $name;
     private $dueDate;
@@ -10,10 +14,10 @@ class Milestone {
 
     /**
      * Milestone constructor.
-     * @param $name
-     * @param $dueDate
-     * @param $issuesUrl
-     * @param $apiIssuesUrl
+     * @param $name Name of milestone
+     * @param $dueDate Date milestone must be completed
+     * @param $issuesUrl regular URL for issues attached to milestone
+     * @param $apiIssuesUrl API URL for issues attached to milestone
      */
     public function __construct($name, $dueDate, $issuesUrl, $apiIssuesUrl)
     {
@@ -24,7 +28,8 @@ class Milestone {
     }
 
     /**
-     * @return mixed
+     * Get milestone name
+     * @return string
      */
     public function getName()
     {
@@ -32,7 +37,8 @@ class Milestone {
     }
 
     /**
-     * @return mixed
+     * Get date milestone must be completed by
+     * @return Carbon
      */
     public function getDueDate()
     {
@@ -40,7 +46,8 @@ class Milestone {
     }
 
     /**
-     * @return mixed
+     * Get regular URL for issues attached to this milestone
+     * @return string
      */
     public function getIssuesUrl()
     {
@@ -48,7 +55,8 @@ class Milestone {
     }
 
     /**
-     * @return mixed
+     * Get API URL for issues attached to this milestone
+     * @return string
      */
     public function getApiIssuesUrl()
     {

@@ -1,5 +1,9 @@
 <?php namespace Sifter\Resource;
 
+/**
+ * Class Resource
+ * @package Sifter\Resource
+ */
 abstract class Resource {
     private $page;
     private $perPage;
@@ -9,11 +13,11 @@ abstract class Resource {
 
     /**
      * Resource constructor.
-     * @param $page
-     * @param $perPage
-     * @param $totalPages
-     * @param $nextPageUrl
-     * @param $previousPageUrl
+     * @param $page Current resource page
+     * @param $perPage Number of resource items per page
+     * @param $totalPages Total number pages for resource item
+     * @param $nextPageUrl API URL to get next page of resource items
+     * @param $previousPageUrl API URL to get previous page of resource items
      */
     public function __construct($page, $perPage, $totalPages, $nextPageUrl, $previousPageUrl)
     {
@@ -28,6 +32,7 @@ abstract class Resource {
     abstract function previousPage();
 
     /**
+     * Get current page number
      * @return mixed
      */
     public function getPage()
@@ -36,6 +41,7 @@ abstract class Resource {
     }
 
     /**
+     * Get number of resource items per page
      * @return mixed
      */
     public function getPerPage()
@@ -44,6 +50,7 @@ abstract class Resource {
     }
 
     /**
+     * Get total count of resource item pages
      * @return mixed
      */
     public function getTotalPages()
@@ -52,7 +59,8 @@ abstract class Resource {
     }
 
     /**
-     * @return mixed
+     * Get API URL used to retrieve next page of resource items
+     * @return string|null
      */
     public function getNextPageUrl()
     {
@@ -60,7 +68,8 @@ abstract class Resource {
     }
 
     /**
-     * @return mixed
+     * Get API URL used to retrieve previous page of resource items
+     * @return string|null
      */
     public function getPreviousPageUrl()
     {

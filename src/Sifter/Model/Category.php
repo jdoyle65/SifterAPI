@@ -1,5 +1,9 @@
 <?php namespace Sifter\Model;
 
+/**
+ * Class Category
+ * @package Sifter\Model
+ */
 class Category {
 
     private $name;
@@ -8,9 +12,9 @@ class Category {
 
     /**
      * Category constructor.
-     * @param $name
-     * @param $issuesUrl
-     * @param $apiIssuesUrl
+     * @param $name Name of the category
+     * @param $issuesUrl Category's regular Sifter URL
+     * @param $apiIssuesUrl Category's Sifter API URL
      */
     public function __construct($name, $issuesUrl, $apiIssuesUrl)
     {
@@ -20,7 +24,8 @@ class Category {
     }
 
     /**
-     * @return mixed
+     * Get category's name
+     * @return string Category name
      */
     public function getName()
     {
@@ -28,7 +33,8 @@ class Category {
     }
 
     /**
-     * @return mixed
+     * Get category's regular Sifter URL
+     * @return string Sifter URL
      */
     public function getIssuesUrl()
     {
@@ -36,7 +42,8 @@ class Category {
     }
 
     /**
-     * @return mixed
+     * Get category's Sifter API URL
+     * @return string Sifter API URL
      */
     public function getApiIssuesUrl()
     {

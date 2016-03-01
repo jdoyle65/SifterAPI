@@ -2,6 +2,10 @@
 
 use Carbon\Carbon;
 
+/**
+ * Class Issue
+ * @package Sifter\Model
+ */
 class Issue {
 
     private $number;
@@ -25,23 +29,23 @@ class Issue {
 
     /**
      * Issue constructor.
-     * @param $number
-     * @param $categoryName
-     * @param $priority
-     * @param $subject
-     * @param $description
-     * @param $milestoneName
-     * @param $openerName
-     * @param $openerEmail
-     * @param $assigneeName
-     * @param $assigneeEmail
-     * @param $status
-     * @param $commentCount
-     * @param $attachmentCount
-     * @param $createdAt
-     * @param $updatedAt
-     * @param $url
-     * @param $apiUrl
+     * @param $number Issue number
+     * @param $categoryName Name of issue's category
+     * @param $priority Issue priority
+     * @param $subject Subject line
+     * @param $description Description of issue
+     * @param $milestoneName Associated milestone
+     * @param $openerName Person who opened the issue
+     * @param $openerEmail Email of person who opened the issue
+     * @param $assigneeName Person assigned this issue
+     * @param $assigneeEmail Email of person assigned this issue
+     * @param $status Status of the issue
+     * @param $commentCount Number of comments attached to issue
+     * @param $attachmentCount Number of attachments attached to issue
+     * @param $createdAt Date issue created at
+     * @param $updatedAt Date issue modified at
+     * @param $url Issue's regular Sifter URL
+     * @param $apiUrl Issue's Sifter API URL
      */
     public function __construct($number, $categoryName, $priority, $subject, $description, $milestoneName, $openerName, $openerEmail, $assigneeName, $assigneeEmail, $status, $commentCount, $attachmentCount, $createdAt, $updatedAt, $url, $apiUrl)
     {
@@ -65,6 +69,7 @@ class Issue {
     }
 
     /**
+     * Get issue number
      * @return mixed
      */
     public function getNumber()
@@ -73,7 +78,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get category name of issue
+     * @return string
      */
     public function getCategoryName()
     {
@@ -81,6 +87,7 @@ class Issue {
     }
 
     /**
+     * Get issue's priority level
      * @return mixed
      */
     public function getPriority()
@@ -89,7 +96,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get issue subject line
+     * @return string
      */
     public function getSubject()
     {
@@ -97,7 +105,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get description of issue
+     * @return string
      */
     public function getDescription()
     {
@@ -105,7 +114,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get associated milestone name
+     * @return string
      */
     public function getMilestoneName()
     {
@@ -113,7 +123,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get name of person who opened issue
+     * @return string
      */
     public function getOpenerName()
     {
@@ -121,7 +132,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get email of person who opened issue
+     * @return string
      */
     public function getOpenerEmail()
     {
@@ -129,7 +141,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get name of person assigned to issue
+     * @return string
      */
     public function getAssigneeName()
     {
@@ -137,7 +150,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get email of person assigned to issue
+     * @return string
      */
     public function getAssigneeEmail()
     {
@@ -145,7 +159,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get issue's status
+     * @return string
      */
     public function getStatus()
     {
@@ -153,7 +168,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get number of comments attached to issue
+     * @return int
      */
     public function getCommentCount()
     {
@@ -161,7 +177,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get number of attachments attached to issue
+     * @return int
      */
     public function getAttachmentCount()
     {
@@ -169,7 +186,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get date issue created
+     * @return Carbon
      */
     public function getCreatedAt()
     {
@@ -177,7 +195,8 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get date issue last updated
+     * @return Carbon
      */
     public function getUpdatedAt()
     {
@@ -185,12 +204,24 @@ class Issue {
     }
 
     /**
-     * @return mixed
+     * Get regular Sifter URL
+     * @return string
      */
     public function getUrl()
     {
         return $this->url;
     }
+
+    /**
+     * Get Sifter API Url
+     * @return string
+     */
+    public function getApiUrl()
+    {
+        return $this->apiUrl;
+    }
+
+
 
 
 

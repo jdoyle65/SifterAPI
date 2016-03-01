@@ -8,15 +8,12 @@ use Curl\Curl;
  */
 class SifterCurl extends Curl {
 
-    /**
-     * @var string
-     */
     private $baseUrl = '';
 
     /**
      * SifterCurl constructor.
-     * @param $apiKey
-     * @param $apiSubdomain
+     * @param $apiKey Your Sifter API Key
+     * @param $apiSubdomain Your Sifter subdomain (for example mycompany if you use https://mycompany.sifterapp.com)
      */
     public function __construct($apiKey, $apiSubdomain)
     {
@@ -27,6 +24,7 @@ class SifterCurl extends Curl {
     }
 
     /**
+     * Get the base URL being called on each request
      * @return string
      */
     public function getBaseUrl() {

@@ -4,7 +4,10 @@ use Sifter\JsonObjectHelpers;
 use Sifter\Resource\IssuesResource;
 use Sifter\Sifter;
 
-
+/**
+ * Class Project
+ * @package Sifter\Model
+ */
 class Project {
     private $name;
     private $primaryCompanyName;
@@ -20,17 +23,17 @@ class Project {
 
     /**
      * Project constructor.
-     * @param $name
-     * @param $primaryCompanyName
-     * @param $archived
-     * @param $url
-     * @param $issuesUrl
-     * @param $milestonesUrl
-     * @param $apiUrl
-     * @param $apiIssuesUrl
-     * @param $apiMilestonesUrl
-     * @param $apiCategoriesUrl
-     * @param $apiPeopleUrl
+     * @param $name Name of project
+     * @param $primaryCompanyName Company associated with project
+     * @param $archived Is project archived?
+     * @param $url Regular URL for project
+     * @param $issuesUrl Regular URL for issues associated with project
+     * @param $milestonesUrl Regular URL for milestones associated with project
+     * @param $apiUrl API URL for project
+     * @param $apiIssuesUrl API URL for issues associated with project
+     * @param $apiMilestonesUrl API URL for milestones associated with project
+     * @param $apiCategoriesUrl API URL for categories associated with project
+     * @param $apiPeopleUrl API URL for people associated with project
      */
     public function __construct($name, $primaryCompanyName, $archived, $url, $issuesUrl, $milestonesUrl, $apiUrl, $apiIssuesUrl, $apiMilestonesUrl, $apiCategoriesUrl, $apiPeopleUrl)
     {
@@ -49,7 +52,8 @@ class Project {
 
 
     /**
-     * @return mixed
+     * Get project name
+     * @return string
      */
     public function getName()
     {
@@ -57,7 +61,8 @@ class Project {
     }
 
     /**
-     * @return mixed
+     * Get name of company associated with project
+     * @return string
      */
     public function getPrimaryCompanyName()
     {
@@ -65,6 +70,7 @@ class Project {
     }
 
     /**
+     * Get is archived
      * @return mixed
      */
     public function getArchived()
@@ -73,7 +79,8 @@ class Project {
     }
 
     /**
-     * @return mixed
+     * Get regular URL for project
+     * @return string
      */
     public function getUrl()
     {
@@ -81,7 +88,8 @@ class Project {
     }
 
     /**
-     * @return mixed
+     * Get regular URL for issues associated with project
+     * @return string
      */
     public function getIssuesUrl()
     {
@@ -89,13 +97,19 @@ class Project {
     }
 
     /**
-     * @return mixed
+     * Get regular URL for milestones associated with project
+     * @return string
      */
     public function getMilestonesUrl()
     {
         return $this->milestonesUrl;
     }
 
+    /**
+     * Get an IssueResource containing issues associated with project
+     * @return IssuesResource
+     * @throws \Exception
+     */
     public function issues() {
         $curl = Sifter::curl();
         $curl->get($this->apiIssuesUrl);
@@ -107,6 +121,11 @@ class Project {
         }
     }
 
+    /**
+     * Get an array of all milestones associated with project
+     * @return array
+     * @throws \Exception
+     */
     public function milestones() {
         $curl = Sifter::curl();
         $curl->get($this->apiMilestonesUrl);
@@ -118,6 +137,11 @@ class Project {
         }
     }
 
+    /**
+     * Get an array of all categories associated with project
+     * @return array
+     * @throws \Exception
+     */
     public function categories() {
         $curl = Sifter::curl();
         $curl->get($this->apiCategoriesUrl);
@@ -129,6 +153,11 @@ class Project {
         }
     }
 
+    /**
+     * Get an array of all people associated with project
+     * @return array
+     * @throws \Exception
+     */
     public function people() {
         $curl = Sifter::curl();
         $curl->get($this->apiPeopleUrl);

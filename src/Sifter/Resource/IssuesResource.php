@@ -4,6 +4,10 @@ use Sifter\JsonObjectHelpers;
 use Sifter\Model\Issue;
 use Sifter\Sifter;
 
+/**
+ * Class IssuesResource
+ * @package Sifter\Resource
+ */
 class IssuesResource extends Resource {
     /**
      * @var array
@@ -13,12 +17,12 @@ class IssuesResource extends Resource {
 
     /**
      * IssuesResource constructor.
-     * @param array $issues
-     * @param $page
-     * @param $perPage
-     * @param $totalPages
-     * @param $nextPageUrl
-     * @param $previousPageUrl
+     * @param array $issues Array of issues to be placed in resource
+     * @param $page Current page of issues held by resource
+     * @param $perPage Current number of issues per page held by resource
+     * @param $totalPages Total number of pages of issues
+     * @param $nextPageUrl API URL to retrieve next page of issues
+     * @param $previousPageUrl API URL to retrieve previous page of issues
      */
     public function __construct(array $issues, $page, $perPage, $totalPages, $nextPageUrl, $previousPageUrl)
     {
@@ -49,6 +53,7 @@ class IssuesResource extends Resource {
     }
 
     /**
+     * Get the array of issues held by this resource
      * @return array
      */
     public function get() {
@@ -57,6 +62,7 @@ class IssuesResource extends Resource {
 
 
     /**
+     * Get the first issue held by this resource
      * @return mixed
      */
     public function first() {
@@ -64,6 +70,7 @@ class IssuesResource extends Resource {
     }
 
     /**
+     * Get an IssueResource containing the next page of issues, else return false if no next page
      * @return bool|IssuesResource
      * @throws \Exception
      */
@@ -77,6 +84,7 @@ class IssuesResource extends Resource {
     }
 
     /**
+     * Get an IssueResource containing the previous page of issues, else return false if no previous page
      * @return bool|IssuesResource
      * @throws \Exception
      */
@@ -90,7 +98,8 @@ class IssuesResource extends Resource {
     }
 
     /**
-     * @param $json
+     * Build an IssueResource from the passed JSON
+     * @param $json JSON object
      * @return IssuesResource
      */
     public static function issuesResourceFromJson($json) {
@@ -98,6 +107,7 @@ class IssuesResource extends Resource {
     }
 
     /**
+     * Helper function to go to the page requested by the pageUrl
      * @param $pageUrl
      * @return IssuesResource
      * @throws \Exception

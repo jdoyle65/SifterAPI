@@ -10,12 +10,12 @@ class Person {
 
     /**
      * Person constructor.
-     * @param $username
-     * @param $firstName
-     * @param $lastName
-     * @param $email
-     * @param $issuesUrl
-     * @param $apiIssuesUrl
+     * @param $username Username
+     * @param $firstName First name
+     * @param $lastName Last name
+     * @param $email Email
+     * @param $issuesUrl Regular URL for issues assigned to user
+     * @param $apiIssuesUrl API URL for issues assigned to user
      */
     public function __construct($username, $firstName, $lastName, $email, $issuesUrl, $apiIssuesUrl)
     {
@@ -28,7 +28,8 @@ class Person {
     }
 
     /**
-     * @return mixed
+     * Get username
+     * @return string
      */
     public function getUsername()
     {
@@ -36,7 +37,8 @@ class Person {
     }
 
     /**
-     * @return mixed
+     * Get first name
+     * @return string
      */
     public function getFirstName()
     {
@@ -44,7 +46,8 @@ class Person {
     }
 
     /**
-     * @return mixed
+     * Get last name
+     * @return string
      */
     public function getLastName()
     {
@@ -52,7 +55,17 @@ class Person {
     }
 
     /**
-     * @return mixed
+     * Get full name
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
+    /**
+     * Get email
+     * @return string
      */
     public function getEmail()
     {
@@ -60,7 +73,8 @@ class Person {
     }
 
     /**
-     * @return mixed
+     * Get regular URL for issues assigned to user
+     * @return string
      */
     public function getIssuesUrl()
     {
@@ -68,7 +82,8 @@ class Person {
     }
 
     /**
-     * @return mixed
+     * Get API URL for issues assigned to user
+     * @return string
      */
     public function getApiIssuesUrl()
     {
