@@ -1,6 +1,8 @@
 <?php namespace Sifter\Model;
 
 use Carbon\Carbon;
+use Sifter\JsonObjectHelpers;
+use Sifter\Sifter;
 
 /**
  * Class Issue
@@ -220,6 +222,25 @@ class Issue {
     {
         return $this->apiUrl;
     }
+
+
+    /**
+     * Get an array of comments
+     * @return array
+     */
+    public function comments()
+    {
+        $curl = Sifter::curl();
+        $curl->get($this->apiUrl);
+
+        if($curl->error) {
+            throw new \Exception('cURL GET failed with code '.$curl->error_code);
+        } else {
+            return JsonObjectHelpers::toCommentsArrayFromIssueJson($curl->response);
+        }
+    }
+
+    // TODO Sifter returns comments where things like status, milestone, category have been changed with empty body. Would be nice to have a changes() function as well.
 
 
 

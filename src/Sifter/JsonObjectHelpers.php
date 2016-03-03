@@ -1,6 +1,7 @@
 <?php namespace Sifter;
 
 use Sifter\Model\Category;
+use Sifter\Model\Comment;
 use Sifter\Model\Milestone;
 use Sifter\Model\Person;
 use Sifter\Model\Project;
@@ -142,6 +143,44 @@ class JsonObjectHelpers {
             }
             return $people;
         }
+    }
+
+    static public function toComment($json) {
+        if(is_string($json)) {
+            $json = json_decode($json);
+        }
+        return new Comment(
+            $json->body,
+            $json->commenter,
+            $json->commenter_email,
+            $json->created_at,
+            $json->updated_at
+        );
+    }
+
+    static public function toCommentsArrayFromIssueJson($json) {
+        if(is_string($json)) {
+            $json = json_decode($json);
+        }
+        return self::toCommentsArray($json->issue);
+    }
+
+    static public function toCommentsArray($json) {
+        if(is_string($json)) {
+            $json = json_decode($json);
+        }
+        $comments = array();
+
+        if ( ! isset($json->comments) || ! is_array($json->comments)) {
+            throw new \Exception('Comments were not returned');
+        } else {
+            foreach($json->comments as $comment) {
+                $comments[] = self::toComment($comment);
+            }
+            return $comments;
+        }
+
+        // TODO Build out an attachments model and add attachments to each Comment as well.
     }
 
 }

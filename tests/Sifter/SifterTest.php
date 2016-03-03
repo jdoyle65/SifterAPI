@@ -161,6 +161,33 @@ class SifterTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function testCommentsThroughIssue() {
+        $sifter = new Sifter($this->sifterCurlMock);
+        $projects = $sifter->allProjects();
+
+        $this->assertTrue(is_array($projects));
+        $this->assertNotEmpty($projects);
+
+        $issues = $projects[0]->issues();
+
+        $this->assertNotEmpty($issues->get());
+        $issue = $issues->get()[1];
+        $this->assertNotNull($issue);
+        $this->assertEquals('https://example.sifterapp.com/api/projects/1/issues/6', $issue->getApiUrl());
+
+        $comments = $issue->comments();
+        $this->assertNotEmpty($comments);
+        $comment = $comments[0];
+
+        $this->assertEquals('Proin dictum dignissim metus. Vivamus vel risus sed augue venenatis sodales. Quisque tempus dictum lorem. Sed a turpis eu turpis lobortis pellentesque. Nunc sem mi, ullamcorper non, dignissim eu, pellentesque eget, justo. Donec mollis neque quis tortor. In hac habitasse platea dictumst. Mauris at velit non erat scelerisque iaculis.', $comment->getBody());
+        $this->assertEquals('Adam Keys', $comment->getCommenter());
+        $this->assertEquals('adam@example.com', $comment->getCommenterEmail());
+        $this->assertInstanceOf('Carbon\Carbon', $comment->getCreatedAt());
+        $this->assertInstanceOf('Carbon\Carbon', $comment->getUpdatedAt());
+        $this->assertEquals('2010/05/16 19:13:16', $comment->getCreatedAt()->format('Y/m/d H:i:s'));
+        $this->assertEquals('2010/05/16 19:13:16', $comment->getUpdatedAt()->format('Y/m/d H:i:s'));
+    }
+
     public function createSifterCurlCallbackClosure() {
         $sifterCurlMock = $this->sifterCurlMock;
         $baseUrl = self::$baseUrl;
@@ -198,6 +225,11 @@ class SifterTest extends \PHPUnit_Framework_TestCase
 
                 case $baseUrl . 'projects/1/people':
                     $sifterCurlMock->response = $that->jsonTestString('projects_1_people.json');
+                    $sifterCurlMock->error = 0;
+                    break;
+
+                case $baseUrl . 'projects/1/issues/6':
+                    $sifterCurlMock->response = $that->jsonTestString('projects_1_issues_6.json');
                     $sifterCurlMock->error = 0;
                     break;
 

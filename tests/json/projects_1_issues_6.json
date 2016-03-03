@@ -1,0 +1,49 @@
+{
+  "issue": {
+    "number": 63,
+    "subject": "Sed lectus nunc, egestas tincidunt",
+    "description": "Proin dictum dignissim metus. Vivamus vel risus sed augue venenatis sodales. Quisque tempus dictum lorem. Sed a turpis eu turpis lobortis pellentesque. Nunc sem mi, ullamcorper non, dignissim eu, pellentesque eget, justo. Donec mollis neque quis tortor. In hac habitasse platea dictumst. Mauris at velit non erat scelerisque iaculis.",
+    "priority": "Trivial",
+    "status": "Open",
+    "category_name": "Bug",
+    "milestone_name": null,
+    "opener_name": "Adam Keys",
+    "opener_email": "adam@example.com",
+    "assignee_name": null,
+    "assignee_email": null,
+    "comment_count": 0,
+    "attachment_count": 1,
+    "created_at": "2010/05/19:13:+0000",
+    "updated_at": "2010/05/19:13:+0000",
+    "url": "https://example.sifterapp.com/projects/1/issues/5",
+    "api_url": "https://example.sifterapp.com/api/projects/1/issues/5",
+    "comments": [
+      {
+        "body": "Proin dictum dignissim metus. Vivamus vel risus sed augue venenatis sodales. Quisque tempus dictum lorem. Sed a turpis eu turpis lobortis pellentesque. Nunc sem mi, ullamcorper non, dignissim eu, pellentesque eget, justo. Donec mollis neque quis tortor. In hac habitasse platea dictumst. Mauris at velit non erat scelerisque iaculis.",
+        "priority": "Trivial",
+        "status": "Open",
+        "category": "Bug",
+        "commenter": "Adam Keys",
+        "commenter_email": "adam@example.com",
+        "opener": "Adam Keys",
+        "opener_email": "adam@example.com",
+        "project": "Rhino",
+        "milestone_name": null,
+        "assignee_name": null,
+        "assignee_email": null,
+        "created_at": "2010/05/16 19:13:16 +0000",
+        "updated_at": "2010/05/16 19:13:16 +0000",
+        "attachments": [
+          {
+            "filename": "1.png",
+            "size": 16895,
+            "height": 294,
+            "width": 320,
+            "url": "http://example.sifterapp.com/attachments/1",
+            "thumb_url": "https://example.s3.amazonaws.com/attachments/1/1_thumb.png?AWSAccessKeyId=123456&Signature=123456&Expires=1351808613"
+          }
+        ]
+      }
+    ]
+  }
+}
