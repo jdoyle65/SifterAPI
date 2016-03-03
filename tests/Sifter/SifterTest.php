@@ -171,7 +171,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $issues = $projects[0]->issues();
 
         $this->assertNotEmpty($issues->get());
-        $issue = $issues->get()[1];
+        $issue = ($issues->get())[1];
         $this->assertNotNull($issue);
         $this->assertEquals('https://example.sifterapp.com/api/projects/1/issues/6', $issue->getApiUrl());
 
