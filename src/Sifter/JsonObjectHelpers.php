@@ -2,6 +2,7 @@
 
 use Sifter\Model\Category;
 use Sifter\Model\Comment;
+use Sifter\Model\Issue;
 use Sifter\Model\Milestone;
 use Sifter\Model\Person;
 use Sifter\Model\Project;
@@ -46,6 +47,33 @@ class JsonObjectHelpers
             }
             return $projects;
         }
+    }
+
+    static public function toIssue($json)
+    {
+        if(is_string($json)) {
+            $json = json_decode($json);
+        }
+
+        return new Issue(
+            $json->number,
+            $json->category_name,
+            $json->priority,
+            $json->subject,
+            $json->description,
+            $json->milestone_name,
+            $json->opener_name,
+            $json->opener_email,
+            $json->assignee_name,
+            $json->assignee_email,
+            $json->status,
+            $json->comment_count,
+            $json->attachment_count,
+            $json->created_at,
+            $json->updated_at,
+            $json->url,
+            $json->api_url
+        );
     }
 
     static public function toIssuesResource($json)

@@ -227,6 +227,7 @@ class Issue {
     /**
      * Get an array of comments
      * @return array
+     * @throws \Exception
      */
     public function comments()
     {
@@ -241,7 +242,6 @@ class Issue {
     }
 
     // TODO Sifter returns comments where things like status, milestone, category have been changed with empty body. Would be nice to have a changes() function as well.
-
 
 
 

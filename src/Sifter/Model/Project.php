@@ -1,6 +1,7 @@
 <?php namespace Sifter\Model;
 
 use Sifter\JsonObjectHelpers;
+use Sifter\Request\CreateIssueRequestObject;
 use Sifter\Resource\IssuesResource;
 use Sifter\Sifter;
 
@@ -146,7 +147,13 @@ class Project {
                 }
                 $params['p'] = $priorityParam;
             }
+
+            if(isset($options['search'])) {
+                $params['q'] = $options['search'];
+            }
         }
+
+        asort($params);
 
         $curl = Sifter::curl();
         $curl->get($this->apiIssuesUrl, $params);
@@ -203,6 +210,26 @@ class Project {
             throw new \Exception('cURL GET failed with code '.$curl->error_code);
         } else {
             return JsonObjectHelpers::toPeopleArray($curl->response);
+        }
+    }
+
+    public function createIssue(CreateIssueRequestObject $issue)
+    {
+        $curl = Sifter::curl();
+        $url = $this->apiIssuesUrl;
+
+        $curl->post($url, $issue->dataArray());
+
+        if($curl->error) {
+            throw new \Exception('cURL POST failed with code '
+                .$curl->error_code.'.\n'
+                .var_dump(json_decode($curl->response)));
+        } else {
+            $json = json_decode($curl->response);
+            if(!isset($json->issue)) {
+                throw new \Exception('No issue object was returned');
+            }
+            return JsonObjectHelpers::toIssue($json->issue);
         }
     }
 
