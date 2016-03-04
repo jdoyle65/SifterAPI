@@ -179,9 +179,18 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($comments);
         $comment = $comments[0];
 
+        /* @var $comment \Sifter\Model\Comment */
         $this->assertEquals('Proin dictum dignissim metus. Vivamus vel risus sed augue venenatis sodales. Quisque tempus dictum lorem. Sed a turpis eu turpis lobortis pellentesque. Nunc sem mi, ullamcorper non, dignissim eu, pellentesque eget, justo. Donec mollis neque quis tortor. In hac habitasse platea dictumst. Mauris at velit non erat scelerisque iaculis.', $comment->getBody());
+        $this->assertEquals('Trivial', $comment->getPriority());
+        $this->assertEquals('Open', $comment->getStatus());
+        $this->assertEquals('Bug', $comment->getCategory());
         $this->assertEquals('Adam Keys', $comment->getCommenter());
         $this->assertEquals('adam@example.com', $comment->getCommenterEmail());
+        $this->assertEquals('Adam Keys', $comment->getOpener());
+        $this->assertEquals('adam@example.com', $comment->getOpenerEmail());
+        $this->assertNull($comment->getMilestoneName());
+        $this->assertNull($comment->getAssigneeName());
+        $this->assertNull($comment->getAssigneeEmail());
         $this->assertInstanceOf('Carbon\Carbon', $comment->getCreatedAt());
         $this->assertInstanceOf('Carbon\Carbon', $comment->getUpdatedAt());
         $this->assertEquals('2010/05/16 19:13:16', $comment->getCreatedAt()->format('Y/m/d H:i:s'));

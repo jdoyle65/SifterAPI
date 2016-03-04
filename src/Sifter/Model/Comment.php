@@ -4,27 +4,53 @@ use Carbon\Carbon;
 
 class Comment {
     private $body;
+    private $priority;
+    private $status;
+    private $category;
     private $commenter;
     private $commenterEmail;
+    private $opener;
+    private $openerEmail;
+    private $project;
+    private $milestoneName;
+    private $assigneeName;
+    private $assigneeEmail;
     private $createdAt;
     private $updatedAt;
     private $attachments = array();
 
-    // TODO Include milestone, status, etc.
     /**
      * Comment constructor.
-     * @param $body Body of the comment
-     * @param $commenter Name of person that made comment
-     * @param $commenterEmail Email of person that made comment
-     * @param $createdAt Date created at
-     * @param $updatedAt Date updated at
-     * @param array $attachments Array of attachments in this comment
+     * @param $body
+     * @param $priority
+     * @param $status
+     * @param $category
+     * @param $commenter
+     * @param $commenterEmail
+     * @param $opener
+     * @param $openerEmail
+     * @param $project
+     * @param $milestoneName
+     * @param $assigneeName
+     * @param $assigneeEmail
+     * @param $createdAt
+     * @param $updatedAt
+     * @param array $attachments
      */
-    public function __construct($body, $commenter, $commenterEmail, $createdAt, $updatedAt, array $attachments = array())
+    public function __construct($body, $priority, $status, $category, $commenter, $commenterEmail, $opener, $openerEmail, $project, $milestoneName, $assigneeName, $assigneeEmail, $createdAt, $updatedAt, array $attachments = array())
     {
         $this->body = $body;
+        $this->priority = $priority;
+        $this->status = $status;
+        $this->category = $category;
         $this->commenter = $commenter;
         $this->commenterEmail = $commenterEmail;
+        $this->opener = $opener;
+        $this->openerEmail = $openerEmail;
+        $this->project = $project;
+        $this->milestoneName = $milestoneName;
+        $this->assigneeName = $assigneeName;
+        $this->assigneeEmail = $assigneeEmail;
         $this->createdAt = new Carbon($createdAt);
         $this->updatedAt = new Carbon($updatedAt);
         $this->attachments = $attachments;
@@ -41,6 +67,30 @@ class Comment {
     /**
      * @return mixed
      */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCommenter()
     {
         return $this->commenter;
@@ -52,6 +102,54 @@ class Comment {
     public function getCommenterEmail()
     {
         return $this->commenterEmail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOpener()
+    {
+        return $this->opener;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOpenerEmail()
+    {
+        return $this->openerEmail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMilestoneName()
+    {
+        return $this->milestoneName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssigneeName()
+    {
+        return $this->assigneeName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssigneeEmail()
+    {
+        return $this->assigneeEmail;
     }
 
     /**

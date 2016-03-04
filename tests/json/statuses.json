@@ -1,0 +1,8 @@
+{
+  "statuses": {
+    "Open": 1,
+    "Reopened": 2,
+    "Resolved": 3,
+    "Closed": 4
+  }
+}

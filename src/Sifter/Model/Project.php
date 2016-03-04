@@ -107,12 +107,49 @@ class Project {
 
     /**
      * Get an IssueResource containing issues associated with project
+     * @param array $options sort or filter options. Get sorting and filtering code arrays
+     * from Sifter::statuses() or Sifter::priorities(). You can sort by multiple values by passing
+     * in an array for each option as well. For example, if you wanted to sort and filter by Open then Closed issues:
+     *  $statusOptions = Sifter::statuses();
+     *  $options = array(
+     *                 'status' => array(
+     *                          $statusOptions['Open'],
+     *                          $statusOptions['Closed']
+     *                     )
+     *             )
+     *
+     *
      * @return IssuesResource
      * @throws \Exception
      */
-    public function issues() {
+    public function issues(array $options = array()) {
+        $params = array();
+
+        if(!empty($options)) {
+
+            if(isset($options['status'])) {
+                $statusOptions = $options['status'];
+                if(is_array($statusOptions)) {
+                    $statusParam = implode('-', $statusOptions);
+                } else {
+                    $statusParam = $statusOptions;
+                }
+                $params['s'] = $statusParam;
+            }
+
+            if(isset($options['priority'])) {
+                $priorityOptions = $options['priority'];
+                if(is_array($priorityOptions)) {
+                    $priorityParam = implode('-', $priorityOptions);
+                } else {
+                    $priorityParam = $priorityOptions;
+                }
+                $params['p'] = $priorityParam;
+            }
+        }
+
         $curl = Sifter::curl();
-        $curl->get($this->apiIssuesUrl);
+        $curl->get($this->apiIssuesUrl, $params);
 
         if($curl->error) {
             throw new \Exception('cURL GET failed with code '.$curl->error_code);
