@@ -3,6 +3,7 @@
 
 
 
+use Sifter\Request\CreateIssueRequestObject;
 use Sifter\Resource\IssuesResource;
 use Sifter\Sifter;
 
@@ -197,7 +198,40 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2010/05/16 19:13:16', $comment->getUpdatedAt()->format('Y/m/d H:i:s'));
     }
 
-    public function createSifterCurlCallbackClosure() {
+    public function testCreateIssue() {
+        $sifter = new Sifter($this->sifterCurlMock);
+        $projects = $sifter->allProjects();
+
+        $this->assertTrue(is_array($projects));
+        $this->assertNotEmpty($projects);
+
+        $issue = $projects[0]->createIssue(
+            new CreateIssueRequestObject(
+                'Sed lectus nunc, egestas tincidunt',
+                'Proin dictum dignissim metus. Vivamus vel risus sed augue venenatis sodales. Quisque tempus dictum lorem. Sed a turpis eu turpis lobortis pellentesque. Nunc sem mi, ullamcorper non, dignissim eu, pellentesque eget, justo. Donec mollis neque quis tortor. In hac habitasse platea dictumst. Mauris at velit non erat scelerisque iaculis.',
+                null,
+                'Trivial',
+                null,
+                'Bug'
+            )
+        );
+        /* @var $issue \Sifter\Model\Issue */
+        $this->assertNotNull($issue);
+        $this->assertEquals('https://example.sifterapp.com/api/projects/1/issues/6', $issue->getApiUrl());
+
+
+        $this->assertEquals('Trivial', $issue->getPriority());
+        $this->assertEquals('Open', $issue->getStatus());
+        $this->assertEquals('Bug', $issue->getCategoryName());
+        $this->assertNull($issue->getMilestoneName());
+        $this->assertNull($issue->getAssigneeName());
+        $this->assertInstanceOf('Carbon\Carbon', $issue->getCreatedAt());
+        $this->assertInstanceOf('Carbon\Carbon', $issue->getUpdatedAt());
+        $this->assertEquals('2010/05/16 19:13:16', $issue->getCreatedAt()->format('Y/m/d H:i:s'));
+        $this->assertEquals('2010/05/16 19:13:16', $issue->getUpdatedAt()->format('Y/m/d H:i:s'));
+    }
+
+    public function createSifterCurlGetCallbackClosure() {
         $sifterCurlMock = $this->sifterCurlMock;
         $baseUrl = self::$baseUrl;
         $that = $this;
@@ -248,6 +282,27 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         };
     }
 
+    public function createSifterCurlPostCallbackClosure() {
+        $sifterCurlMock = $this->sifterCurlMock;
+        $baseUrl = self::$baseUrl;
+        $that = $this;
+
+        return function() use ($baseUrl, $sifterCurlMock, $that) {
+            $args = func_get_args();
+            $url = $args[0];
+            switch ($url) {
+
+                case $baseUrl . 'projects/1/issues':
+                    $sifterCurlMock->response = $that->jsonTestString('projects_1_issues_6.json');
+                    $sifterCurlMock->error = 0;
+                    break;
+
+                default:
+                    break;
+            }
+        };
+    }
+
     public function setUpSifterCurlMock()
     {
         $this->sifterCurlMock = $this->getMockBuilder('Sifter\SifterCurl')
@@ -258,11 +313,19 @@ class SifterTest extends \PHPUnit_Framework_TestCase
             ->willReturn(self::$baseUrl);
 
         // Set up the routes that are going to be called
-        $sifterCurlCallback = $this->createSifterCurlCallbackClosure();
+        $sifterCurlCallback = $this->createSifterCurlGetCallbackClosure();
 
         $this->sifterCurlMock
             ->expects($this->any())
             ->method('get')
+            ->will($this->returnCallback($sifterCurlCallback));
+
+        // Set up the routes that are going to be called
+        $sifterCurlCallback = $this->createSifterCurlPostCallbackClosure();
+
+        $this->sifterCurlMock
+            ->expects($this->any())
+            ->method('post')
             ->will($this->returnCallback($sifterCurlCallback));
     }
 
