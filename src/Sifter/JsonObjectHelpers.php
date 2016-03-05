@@ -1,5 +1,6 @@
 <?php namespace Sifter;
 
+use Sifter\Model\Attachment;
 use Sifter\Model\Category;
 use Sifter\Model\Comment;
 use Sifter\Model\Issue;
@@ -187,6 +188,11 @@ class JsonObjectHelpers
         if (is_string($json)) {
             $json = json_decode($json);
         }
+        $attachments = array();
+        if(isset($json->attachments) && !empty($json->attachments)) {
+            $attachments = self::toAttachmentArray($json);
+        }
+
         return new Comment(
             $json->body,
             $json->priority,
@@ -201,7 +207,8 @@ class JsonObjectHelpers
             $json->assignee_name,
             $json->assignee_email,
             $json->created_at,
-            $json->updated_at
+            $json->updated_at,
+            $attachments
         );
     }
 
@@ -228,8 +235,6 @@ class JsonObjectHelpers
             }
             return $comments;
         }
-
-        // TODO Build out an attachments model and add attachments to each Comment as well.
     }
 
     static public function toStatusArray($json) {
@@ -246,6 +251,36 @@ class JsonObjectHelpers
         }
 
         return (array)$json->priorities;
+    }
+
+    static public function toAttachmentArray($json) {
+        if(is_string($json)) {
+            $json = json_decode($json);
+        }
+        if(!isset($json->attachments) || !is_array($json->attachments)) {
+            throw new \Exception('Attachments not found');
+        }
+
+        $attachments = array();
+        foreach($json->attachments as $attachment) {
+            $attachments[] = self::toAttachment($attachment);
+        }
+        return $attachments;
+    }
+
+    static public function toAttachment($json) {
+        if(is_string($json)) {
+            $json = json_decode($json);
+        }
+
+        return new Attachment(
+            $json->filename,
+            $json->size,
+            $json->height,
+            $json->width,
+            $json->url,
+            $json->thumb_url
+        );
     }
 
 }

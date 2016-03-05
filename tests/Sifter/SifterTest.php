@@ -3,6 +3,7 @@
 
 
 
+use Sifter\Model\Attachment;
 use Sifter\Request\CreateIssueRequestObject;
 use Sifter\Resource\IssuesResource;
 use Sifter\Sifter;
@@ -196,6 +197,40 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Carbon\Carbon', $comment->getUpdatedAt());
         $this->assertEquals('2010/05/16 19:13:16', $comment->getCreatedAt()->format('Y/m/d H:i:s'));
         $this->assertEquals('2010/05/16 19:13:16', $comment->getUpdatedAt()->format('Y/m/d H:i:s'));
+    }
+
+    public function testAttachments()
+    {
+        $sifter = new Sifter($this->sifterCurlMock);
+        $projects = $sifter->allProjects();
+
+        $this->assertTrue(is_array($projects));
+        $this->assertNotEmpty($projects);
+
+        $issues = $projects[0]->issues()->get();
+
+        $this->assertNotEmpty($issues);
+        $issue = $issues[1];
+        $this->assertNotNull($issue);
+        $this->assertEquals('https://example.sifterapp.com/api/projects/1/issues/6', $issue->getApiUrl());
+
+        $comments = $issue->comments();
+        $this->assertNotEmpty($comments);
+        $comment = $comments[0];
+
+        /* @var $comment \Sifter\Model\Comment */
+        $attachments = $comment->getAttachments();
+        $this->assertNotEmpty($attachments);
+
+        /* @var $attachment \Sifter\Model\Attachment */
+        $attachment = $attachments[0];
+
+        $this->assertEquals('1.png', $attachment->getFilename());
+        $this->assertEquals(16895, $attachment->getSize());
+        $this->assertEquals(294, $attachment->getHeight());
+        $this->assertEquals(320, $attachment->getWidth());
+        $this->assertEquals('http://example.sifterapp.com/attachments/1', $attachment->getUrl());
+        $this->assertEquals('https://example.s3.amazonaws.com/attachments/1/1_thumb.png?AWSAccessKeyId=123456&Signature=123456&Expires=1351808613', $attachment->getThumbUrl());
     }
 
     public function testCreateIssue() {
