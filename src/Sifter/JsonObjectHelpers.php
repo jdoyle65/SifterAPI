@@ -9,9 +9,17 @@ use Sifter\Model\Person;
 use Sifter\Model\Project;
 use Sifter\Resource\IssuesResource;
 
+/**
+ * Class JsonObjectHelpers
+ * @package Sifter
+ */
 class JsonObjectHelpers
 {
 
+    /**
+     * @param $json
+     * @return Project
+     */
     static public function toProject($json)
     {
         if (is_string($json)) {
@@ -33,6 +41,11 @@ class JsonObjectHelpers
         );
     }
 
+    /**
+     * @param $json
+     * @return array
+     * @throws \Exception
+     */
     static public function toProjectsArray($json)
     {
         if (is_string($json)) {
@@ -50,6 +63,10 @@ class JsonObjectHelpers
         }
     }
 
+    /**
+     * @param $json
+     * @return Issue
+     */
     static public function toIssue($json)
     {
         if(is_string($json)) {
@@ -77,6 +94,10 @@ class JsonObjectHelpers
         );
     }
 
+    /**
+     * @param $json
+     * @return IssuesResource
+     */
     static public function toIssuesResource($json)
     {
         if (is_string($json)) {
@@ -92,6 +113,10 @@ class JsonObjectHelpers
         );
     }
 
+    /**
+     * @param $json
+     * @return Milestone
+     */
     static public function toMilestone($json)
     {
         if (is_string($json)) {
@@ -105,6 +130,11 @@ class JsonObjectHelpers
         );
     }
 
+    /**
+     * @param $json
+     * @return array
+     * @throws \Exception
+     */
     static public function toMilestonesArray($json)
     {
         if (is_string($json)) {
@@ -122,6 +152,10 @@ class JsonObjectHelpers
         }
     }
 
+    /**
+     * @param $json
+     * @return Category
+     */
     static public function toCategory($json)
     {
         if (is_string($json)) {
@@ -134,6 +168,11 @@ class JsonObjectHelpers
         );
     }
 
+    /**
+     * @param $json
+     * @return array
+     * @throws \Exception
+     */
     static public function toCategoriesArray($json)
     {
         if (is_string($json)) {
@@ -151,6 +190,10 @@ class JsonObjectHelpers
         }
     }
 
+    /**
+     * @param $json
+     * @return Person
+     */
     static public function toPerson($json)
     {
         if (is_string($json)) {
@@ -166,6 +209,11 @@ class JsonObjectHelpers
         );
     }
 
+    /**
+     * @param $json
+     * @return array
+     * @throws \Exception
+     */
     static public function toPeopleArray($json)
     {
         if (is_string($json)) {
@@ -183,6 +231,11 @@ class JsonObjectHelpers
         }
     }
 
+    /**
+     * @param $json
+     * @return Comment
+     * @throws \Exception
+     */
     static public function toComment($json)
     {
         if (is_string($json)) {
@@ -212,6 +265,11 @@ class JsonObjectHelpers
         );
     }
 
+    /**
+     * @param $json
+     * @return array
+     * @throws \Exception
+     */
     static public function toCommentsArrayFromIssueJson($json)
     {
         if (is_string($json)) {
@@ -220,6 +278,11 @@ class JsonObjectHelpers
         return self::toCommentsArray($json->issue);
     }
 
+    /**
+     * @param $json
+     * @return array
+     * @throws \Exception
+     */
     static public function toCommentsArray($json)
     {
         if (is_string($json)) {
@@ -237,6 +300,10 @@ class JsonObjectHelpers
         }
     }
 
+    /**
+     * @param $json
+     * @return array
+     */
     static public function toStatusArray($json) {
         if (is_string($json)) {
             $json = json_decode($json);
@@ -245,6 +312,10 @@ class JsonObjectHelpers
         return (array)$json->statuses;
     }
 
+    /**
+     * @param $json
+     * @return array
+     */
     static public function toPriorityArray($json) {
         if (is_string($json)) {
             $json = json_decode($json);
@@ -253,6 +324,11 @@ class JsonObjectHelpers
         return (array)$json->priorities;
     }
 
+    /**
+     * @param $json
+     * @return array
+     * @throws \Exception
+     */
     static public function toAttachmentArray($json) {
         if(is_string($json)) {
             $json = json_decode($json);
@@ -268,6 +344,10 @@ class JsonObjectHelpers
         return $attachments;
     }
 
+    /**
+     * @param $json
+     * @return Attachment
+     */
     static public function toAttachment($json) {
         if(is_string($json)) {
             $json = json_decode($json);

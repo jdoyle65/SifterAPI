@@ -24,17 +24,17 @@ class Project {
 
     /**
      * Project constructor.
-     * @param $name Name of project
-     * @param $primaryCompanyName Company associated with project
-     * @param $archived Is project archived?
-     * @param $url Regular URL for project
-     * @param $issuesUrl Regular URL for issues associated with project
-     * @param $milestonesUrl Regular URL for milestones associated with project
-     * @param $apiUrl API URL for project
-     * @param $apiIssuesUrl API URL for issues associated with project
-     * @param $apiMilestonesUrl API URL for milestones associated with project
-     * @param $apiCategoriesUrl API URL for categories associated with project
-     * @param $apiPeopleUrl API URL for people associated with project
+     * @param $name string Name of project
+     * @param $primaryCompanyName string Company associated with project
+     * @param $archived boolean Is project archived?
+     * @param $url string Regular URL for project
+     * @param $issuesUrl string Regular URL for issues associated with project
+     * @param $milestonesUrl string Regular URL for milestones associated with project
+     * @param $apiUrl string API URL for project
+     * @param $apiIssuesUrl string API URL for issues associated with project
+     * @param $apiMilestonesUrl string API URL for milestones associated with project
+     * @param $apiCategoriesUrl string API URL for categories associated with project
+     * @param $apiPeopleUrl string API URL for people associated with project
      */
     public function __construct($name, $primaryCompanyName, $archived, $url, $issuesUrl, $milestonesUrl, $apiUrl, $apiIssuesUrl, $apiMilestonesUrl, $apiCategoriesUrl, $apiPeopleUrl)
     {

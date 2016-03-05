@@ -31,23 +31,23 @@ class Issue {
 
     /**
      * Issue constructor.
-     * @param $number Issue number
-     * @param $categoryName Name of issue's category
-     * @param $priority Issue priority
-     * @param $subject Subject line
-     * @param $description Description of issue
-     * @param $milestoneName Associated milestone
-     * @param $openerName Person who opened the issue
-     * @param $openerEmail Email of person who opened the issue
-     * @param $assigneeName Person assigned this issue
-     * @param $assigneeEmail Email of person assigned this issue
-     * @param $status Status of the issue
-     * @param $commentCount Number of comments attached to issue
-     * @param $attachmentCount Number of attachments attached to issue
-     * @param $createdAt Date issue created at
-     * @param $updatedAt Date issue modified at
-     * @param $url Issue's regular Sifter URL
-     * @param $apiUrl Issue's Sifter API URL
+     * @param $number int Issue number
+     * @param $categoryName string Name of issue's category
+     * @param $priority string Issue priority
+     * @param $subject string Subject line
+     * @param $description string Description of issue
+     * @param $milestoneName string Associated milestone
+     * @param $openerName string Person who opened the issue
+     * @param $openerEmail string Email of person who opened the issue
+     * @param $assigneeName string Person assigned this issue
+     * @param $assigneeEmail string Email of person assigned this issue
+     * @param $status string Status of the issue
+     * @param $commentCount int Number of comments attached to issue
+     * @param $attachmentCount int Number of attachments attached to issue
+     * @param $createdAt string Date issue created at
+     * @param $updatedAt string Date issue modified at
+     * @param $url string Issue's regular Sifter URL
+     * @param $apiUrl string Issue's Sifter API URL
      */
     public function __construct($number, $categoryName, $priority, $subject, $description, $milestoneName, $openerName, $openerEmail, $assigneeName, $assigneeEmail, $status, $commentCount, $attachmentCount, $createdAt, $updatedAt, $url, $apiUrl)
     {

@@ -17,12 +17,12 @@ class IssuesResource extends Resource {
 
     /**
      * IssuesResource constructor.
-     * @param array $issues Array of issues to be placed in resource
-     * @param $page Current page of issues held by resource
-     * @param $perPage Current number of issues per page held by resource
-     * @param $totalPages Total number of pages of issues
-     * @param $nextPageUrl API URL to retrieve next page of issues
-     * @param $previousPageUrl API URL to retrieve previous page of issues
+     * @param $issues array Array of issues to be placed in resource
+     * @param $page int Current page of issues held by resource
+     * @param $perPage int Current number of issues per page held by resource
+     * @param $totalPages int Total number of pages of issues
+     * @param $nextPageUrl string API URL to retrieve next page of issues
+     * @param $previousPageUrl string API URL to retrieve previous page of issues
      */
     public function __construct(array $issues, $page, $perPage, $totalPages, $nextPageUrl, $previousPageUrl)
     {

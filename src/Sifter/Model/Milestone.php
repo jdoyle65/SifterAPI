@@ -14,10 +14,10 @@ class Milestone {
 
     /**
      * Milestone constructor.
-     * @param $name Name of milestone
-     * @param $dueDate Date milestone must be completed
-     * @param $issuesUrl regular URL for issues attached to milestone
-     * @param $apiIssuesUrl API URL for issues attached to milestone
+     * @param $name string Name of milestone
+     * @param $dueDate string Date milestone must be completed
+     * @param $issuesUrl string regular URL for issues attached to milestone
+     * @param $apiIssuesUrl string API URL for issues attached to milestone
      */
     public function __construct($name, $dueDate, $issuesUrl, $apiIssuesUrl)
     {

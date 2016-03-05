@@ -10,12 +10,12 @@ class Person {
 
     /**
      * Person constructor.
-     * @param $username Username
-     * @param $firstName First name
-     * @param $lastName Last name
-     * @param $email Email
-     * @param $issuesUrl Regular URL for issues assigned to user
-     * @param $apiIssuesUrl API URL for issues assigned to user
+     * @param $username string Username
+     * @param $firstName string First name
+     * @param $lastName string Last name
+     * @param $email string Email
+     * @param $issuesUrl string Regular URL for issues assigned to user
+     * @param $apiIssuesUrl string API URL for issues assigned to user
      */
     public function __construct($username, $firstName, $lastName, $email, $issuesUrl, $apiIssuesUrl)
     {

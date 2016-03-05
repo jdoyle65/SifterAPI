@@ -13,11 +13,11 @@ abstract class Resource {
 
     /**
      * Resource constructor.
-     * @param $page Current resource page
-     * @param $perPage Number of resource items per page
-     * @param $totalPages Total number pages for resource item
-     * @param $nextPageUrl API URL to get next page of resource items
-     * @param $previousPageUrl API URL to get previous page of resource items
+     * @param $page int Current resource page
+     * @param $perPage int Number of resource items per page
+     * @param $totalPages int Total number pages for resource item
+     * @param $nextPageUrl string API URL to get next page of resource items
+     * @param $previousPageUrl string API URL to get previous page of resource items
      */
     public function __construct($page, $perPage, $totalPages, $nextPageUrl, $previousPageUrl)
     {

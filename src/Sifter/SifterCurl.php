@@ -12,8 +12,8 @@ class SifterCurl extends Curl {
 
     /**
      * SifterCurl constructor.
-     * @param $apiKey Your Sifter API Key
-     * @param $apiSubdomain Your Sifter subdomain (for example mycompany if you use https://mycompany.sifterapp.com)
+     * @param $apiKey string Your Sifter API Key
+     * @param $apiSubdomain string Your Sifter subdomain (for example mycompany if you use https://mycompany.sifterapp.com)
      */
     public function __construct($apiKey, $apiSubdomain)
     {

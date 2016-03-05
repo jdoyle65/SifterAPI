@@ -12,9 +12,9 @@ class Category {
 
     /**
      * Category constructor.
-     * @param $name Name of the category
-     * @param $issuesUrl Category's regular Sifter URL
-     * @param $apiIssuesUrl Category's Sifter API URL
+     * @param $name string Name of the category
+     * @param $issuesUrl string Category's regular Sifter URL
+     * @param $apiIssuesUrl string Category's Sifter API URL
      */
     public function __construct($name, $issuesUrl, $apiIssuesUrl)
     {

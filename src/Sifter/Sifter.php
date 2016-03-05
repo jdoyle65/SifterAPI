@@ -37,7 +37,7 @@ class Sifter
 
     /**
      * Get an array of current Projects
-     * @param bool $withArchived Include archived projects
+     * @param $withArchived boolean Include archived projects
      * @return array
      * @throws \Exception
      */
@@ -82,6 +82,11 @@ class Sifter
         return self::$priorities;
     }
 
+    /**
+     * Get an associative array of allowed statuses from Sifter's API (key = status_name, value = id_number)
+     * @return array
+     * @throws \Exception
+     */
     private static function buildStatuses() {
         $url = Sifter::curl()->getBaseUrl() . 'statuses';
         Sifter::curl()->get($url);
@@ -93,7 +98,12 @@ class Sifter
             return $statuses;
         }
     }
-    
+
+    /**
+     * Get an associative array of allowed priorities from Sifter's API (key = priority_name, value = id_number)
+     * @return array
+     * @throws \Exception
+     */
     private static function buildPriorities() {
         $url = Sifter::curl()->getBaseUrl() . 'priorities';
         Sifter::curl()->get($url);

@@ -21,21 +21,21 @@ class Comment {
 
     /**
      * Comment constructor.
-     * @param $body
-     * @param $priority
-     * @param $status
-     * @param $category
-     * @param $commenter
-     * @param $commenterEmail
-     * @param $opener
-     * @param $openerEmail
-     * @param $project
-     * @param $milestoneName
-     * @param $assigneeName
-     * @param $assigneeEmail
-     * @param $createdAt
-     * @param $updatedAt
-     * @param array $attachments
+     * @param $body string Body of the comment
+     * @param $priority string Priority of parent issue as of this comment
+     * @param $status string Status of parent issue as of this comment
+     * @param $category string Category of parent issue as of this comment
+     * @param $commenter string Name of commenter
+     * @param $commenterEmail string Email of commenter
+     * @param $opener string Name of parent issue opener
+     * @param $openerEmail string Email of parent issue opener
+     * @param $project string Project name the parent issue belongs to as of this comment
+     * @param $milestoneName string Milestone name the parent issue belongs to as of this comment
+     * @param $assigneeName string Name of the assignee for the parent issue as of this comment
+     * @param $assigneeEmail string Email of the assignee for the parent issue as of this comment
+     * @param $createdAt string Datetime string comment created at
+     * @param $updatedAt string Datetime string comment last updated at
+     * @param $attachments array An array of attachments belonging to this comment
      */
     public function __construct($body, $priority, $status, $category, $commenter, $commenterEmail, $opener, $openerEmail, $project, $milestoneName, $assigneeName, $assigneeEmail, $createdAt, $updatedAt, array $attachments = array())
     {

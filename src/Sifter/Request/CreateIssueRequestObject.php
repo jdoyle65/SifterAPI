@@ -10,12 +10,12 @@ class CreateIssueRequestObject {
 
     /**
      * CreateIssueRequestObject constructor.
-     * @param $subject
-     * @param $body
-     * @param $assignee_name
-     * @param $priority_name
-     * @param $milestone_name
-     * @param $category_name
+     * @param $subject string Title of the issue
+     * @param $body string Description of the issue
+     * @param $assignee_name string Full name of person to assign issue to
+     * @param $priority_name string Priority to assign issue
+     * @param $milestone_name string Milestone to assign issue
+     * @param $category_name string Category to assign issue
      */
     public function __construct($subject, $body, $assignee_name, $priority_name, $milestone_name, $category_name)
     {
@@ -27,6 +27,10 @@ class CreateIssueRequestObject {
         $this->category_name = $category_name;
     }
 
+    /**
+     * Get the array data needed to pass to SifterCurl's post function
+     * @return array
+     */
     public function dataArray()
     {
         return array(
