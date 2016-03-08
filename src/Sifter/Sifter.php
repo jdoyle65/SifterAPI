@@ -21,6 +21,17 @@ class Sifter
     {
         self::$curl = $curl;
     }
+    
+    /**
+     * Build an instance of Sifter using the API key and API subdomain passed
+     * @param $apiKey string The API key
+     * @param $apiSubdomain string The API subdomain
+     * @return Sifter
+     */
+    public static function build($apiKey, $apiSubdomain)
+    {
+        return new Sifter(new SifterCurl($apiKey, $apiSubdomain));
+    }
 
     /**
      * Get the SifterCurl object you've set up to communicate with your API
