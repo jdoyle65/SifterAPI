@@ -32,7 +32,7 @@ class Sifter
 
     private function projectUrl($projectId)
     {
-        return Sifter::curl()->getBaseUrl().self::PROJECTS_URL . $projectId;
+        return Sifter::curl()->getBaseUrl() . self::PROJECTS_URL . $projectId;
     }
 
     /**
