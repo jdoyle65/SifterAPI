@@ -54,7 +54,7 @@ class Sifter
      */
     public function allProjects($withArchived = false)
     {
-        $url = Sifter::curl()->getBaseUrl().self::PROJECTS_URL;
+        $url = Sifter::curl()->getBaseUrl() . self::PROJECTS_URL;
         if($withArchived) { $url.'?all=true'; }
         Sifter::curl()->get($url);
 
