@@ -3,6 +3,7 @@
 use Sifter\JsonObjectHelpers;
 use Sifter\Model\Issue;
 use Sifter\Sifter;
+use Sifter\SifterCurl;
 
 /**
  * Class IssuesResource
@@ -108,12 +109,14 @@ class IssuesResource extends Resource {
 
     /**
      * Helper function to go to the page requested by the pageUrl
+     *
      * @param $pageUrl
+     * @param SifterCurl $curl
+     *
      * @return IssuesResource
      * @throws \Exception
      */
-    private function changePage($pageUrl) {
-        $curl = Sifter::curl();
+    private function changePage($pageUrl, SifterCurl $curl) {
         $curl->get($pageUrl);
 
         if($curl->error) {

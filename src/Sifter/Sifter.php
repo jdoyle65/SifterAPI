@@ -7,7 +7,7 @@
  */
 class Sifter
 {
-    static protected $curl = null;
+    protected $curl = null;
     static protected $statuses = null;
     static protected $priorities = null;
 
@@ -19,20 +19,20 @@ class Sifter
      */
     public function __construct(SifterCurl $curl = null)
     {
-        self::$curl = $curl;
+        $this->curl = $curl;
     }
 
     /**
      * Get the SifterCurl object you've set up to communicate with your API
      * @return null|SifterCurl
      */
-    public static function curl() {
-        return self::$curl;
+    public function curl() {
+        return $this->curl;
     }
 
     private function projectUrl($projectId)
     {
-        return Sifter::curl()->getBaseUrl().self::PROJECTS_URL . $projectId;
+        return $this->curl->getBaseUrl().self::PROJECTS_URL . $projectId;
     }
 
     /**
@@ -43,14 +43,14 @@ class Sifter
      */
     public function allProjects($withArchived = false)
     {
-        $url = Sifter::curl()->getBaseUrl().self::PROJECTS_URL;
+        $url = $this->curl->getBaseUrl().self::PROJECTS_URL;
         if($withArchived) { $url.'?all=true'; }
-        Sifter::curl()->get($url);
+        $this->curl->get($url);
 
-        if (Sifter::curl()->error) {
-            throw new \Exception('cURL GET failed with code ' . Sifter::curl()->error_code);
+        if ($this->curl->error) {
+            throw new \Exception('cURL GET failed with code ' . $this->curl->error_code);
         } else {
-            $projects = JsonObjectHelpers::toProjectsArray(Sifter::curl()->response);
+            $projects = JsonObjectHelpers::toProjectsArray($this->curl->response);
             return $projects;
         }
     }
@@ -84,34 +84,38 @@ class Sifter
 
     /**
      * Get an associative array of allowed statuses from Sifter's API (key = status_name, value = id_number)
+     * @param SifterCurl $curl
+     *
      * @return array
      * @throws \Exception
      */
-    private static function buildStatuses() {
-        $url = Sifter::curl()->getBaseUrl() . 'statuses';
-        Sifter::curl()->get($url);
+    private static function buildStatuses(SifterCurl $curl) {
+        $url = $curl->getBaseUrl() . 'statuses';
+        $curl->get($url);
 
-        if (Sifter::curl()->error) {
-            throw new \Exception('cURL GET failed with code ' . Sifter::curl()->error_code);
+        if ($curl->error) {
+            throw new \Exception('cURL GET failed with code ' . $curl->error_code);
         } else {
-            $statuses = JsonObjectHelpers::toStatusArray(Sifter::curl()->response);
+            $statuses = JsonObjectHelpers::toStatusArray($curl->response);
             return $statuses;
         }
     }
 
     /**
      * Get an associative array of allowed priorities from Sifter's API (key = priority_name, value = id_number)
+     * @param SifterCurl $curl
+     *
      * @return array
      * @throws \Exception
      */
-    private static function buildPriorities() {
-        $url = Sifter::curl()->getBaseUrl() . 'priorities';
-        Sifter::curl()->get($url);
+    private static function buildPriorities(SifterCurl $curl) {
+        $url = $curl->getBaseUrl() . 'priorities';
+        $curl->get($url);
 
-        if (Sifter::curl()->error) {
-            throw new \Exception('cURL GET failed with code ' . Sifter::curl()->error_code);
+        if ($curl->error) {
+            throw new \Exception('cURL GET failed with code ' . $curl->error_code);
         } else {
-            $priorities = JsonObjectHelpers::toPriorityArray(Sifter::curl()->response);
+            $priorities = JsonObjectHelpers::toPriorityArray($curl->response);
             return $priorities;
         }
     }

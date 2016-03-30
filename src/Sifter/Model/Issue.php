@@ -226,12 +226,14 @@ class Issue {
 
     /**
      * Get an array of comments
+     *
+     * @param SifterCurl $curl;
+     *
      * @return array
      * @throws \Exception
      */
-    public function comments()
+    public function comments($curl)
     {
-        $curl = Sifter::curl();
         $curl->get($this->apiUrl);
 
         if($curl->error) {

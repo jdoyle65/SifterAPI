@@ -64,7 +64,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($projects);
 
         /* @var $issues IssuesResource */
-        $issues = $projects[0]->issues();
+        $issues = $projects[0]->issues($sifter->curl());
 
         $this->assertInstanceOf('Sifter\Resource\IssuesResource', $issues);
         $this->assertEquals(1, $issues->getPage());
@@ -81,7 +81,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($projects));
         $this->assertNotEmpty($projects);
 
-        $issues = $projects[0]->issues();
+        $issues = $projects[0]->issues($sifter->curl());
 
         /* @var $issue \Sifter\Model\Issue */
         $issue = $issues->first();
@@ -112,7 +112,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($projects));
         $this->assertNotEmpty($projects);
 
-        $milestones = $projects[0]->milestones();
+        $milestones = $projects[0]->milestones($sifter->curl());
 
         /* @var $milestone \Sifter\Model\Milestone */
         $milestone = $milestones[0];
@@ -131,7 +131,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($projects));
         $this->assertNotEmpty($projects);
 
-        $categories = $projects[0]->categories();
+        $categories = $projects[0]->categories($sifter->curl());
 
         /* @var $category \Sifter\Model\Category */
         $category = $categories[0];
@@ -149,7 +149,7 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($projects));
         $this->assertNotEmpty($projects);
 
-        $people = $projects[0]->people();
+        $people = $projects[0]->people($sifter->curl());
 
         /* @var $person \Sifter\Model\Person */
         $person = $people[0];
@@ -170,14 +170,14 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($projects));
         $this->assertNotEmpty($projects);
 
-        $issues = $projects[0]->issues()->get();
+        $issues = $projects[0]->issues($sifter->curl())->get();
 
         $this->assertNotEmpty($issues);
         $issue = $issues[1];
         $this->assertNotNull($issue);
         $this->assertEquals('https://example.sifterapp.com/api/projects/1/issues/6', $issue->getApiUrl());
 
-        $comments = $issue->comments();
+        $comments = $issue->comments($sifter->curl());
         $this->assertNotEmpty($comments);
         $comment = $comments[0];
 
@@ -207,14 +207,14 @@ class SifterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($projects));
         $this->assertNotEmpty($projects);
 
-        $issues = $projects[0]->issues()->get();
+        $issues = $projects[0]->issues($sifter->curl())->get();
 
         $this->assertNotEmpty($issues);
         $issue = $issues[1];
         $this->assertNotNull($issue);
         $this->assertEquals('https://example.sifterapp.com/api/projects/1/issues/6', $issue->getApiUrl());
 
-        $comments = $issue->comments();
+        $comments = $issue->comments($sifter->curl());
         $this->assertNotEmpty($comments);
         $comment = $comments[0];
 
@@ -248,7 +248,8 @@ class SifterTest extends \PHPUnit_Framework_TestCase
                 'Trivial',
                 null,
                 'Bug'
-            )
+            ),
+            $sifter->curl()
         );
         /* @var $issue \Sifter\Model\Issue */
         $this->assertNotNull($issue);

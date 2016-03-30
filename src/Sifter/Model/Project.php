@@ -4,6 +4,7 @@ use Sifter\JsonObjectHelpers;
 use Sifter\Request\CreateIssueRequestObject;
 use Sifter\Resource\IssuesResource;
 use Sifter\Sifter;
+use Sifter\SifterCurl;
 
 /**
  * Class Project
@@ -108,6 +109,8 @@ class Project {
 
     /**
      * Get an IssueResource containing issues associated with project
+     *
+     * @param SifterCurl $curl
      * @param array $options sort, filter, search, perPage, and page options. Get sorting and filtering code arrays
      * from Sifter::statuses() or Sifter::priorities(). You can sort by multiple values by passing
      * in an array for each option as well. For example, if you wanted to sort and filter by Open then Closed issues:
@@ -123,7 +126,7 @@ class Project {
      * @return IssuesResource
      * @throws \Exception
      */
-    public function issues(array $options = array()) {
+    public function issues(SifterCurl $curl, array $options = array()) {
         $params = array();
 
         if(!empty($options)) {
@@ -162,7 +165,6 @@ class Project {
 
         asort($params);
 
-        $curl = Sifter::curl();
         $curl->get($this->apiIssuesUrl, $params);
 
         if($curl->error) {
@@ -174,11 +176,13 @@ class Project {
 
     /**
      * Get an array of all milestones associated with project
+     *
+     * @param SifterCurl $curl
+     *
      * @return array
      * @throws \Exception
      */
-    public function milestones() {
-        $curl = Sifter::curl();
+    public function milestones(SifterCurl $curl) {
         $curl->get($this->apiMilestonesUrl);
 
         if($curl->error) {
@@ -190,11 +194,13 @@ class Project {
 
     /**
      * Get an array of all categories associated with project
+     *
+     * @param SifterCurl $curl
+     *
      * @return array
      * @throws \Exception
      */
-    public function categories() {
-        $curl = Sifter::curl();
+    public function categories(SifterCurl $curl) {
         $curl->get($this->apiCategoriesUrl);
 
         if($curl->error) {
@@ -206,11 +212,13 @@ class Project {
 
     /**
      * Get an array of all people associated with project
+     *
+     * @param SiferCurl $curl
+     *
      * @return array
      * @throws \Exception
      */
-    public function people() {
-        $curl = Sifter::curl();
+    public function people(SifterCurl $curl) {
         $curl->get($this->apiPeopleUrl);
 
         if($curl->error) {
@@ -220,9 +228,8 @@ class Project {
         }
     }
 
-    public function createIssue(CreateIssueRequestObject $issue)
+    public function createIssue(CreateIssueRequestObject $issue, SifterCurl $curl)
     {
-        $curl = Sifter::curl();
         $url = $this->apiIssuesUrl;
 
         $curl->post($url, $issue->dataArray());
