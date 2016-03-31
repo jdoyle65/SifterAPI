@@ -1,4 +1,5 @@
 <?php namespace Sifter\Resource;
+use Sifter\SifterCurl;
 
 /**
  * Class Resource
@@ -28,8 +29,8 @@ abstract class Resource {
         $this->previousPageUrl = $previousPageUrl;
     }
 
-    abstract function nextPage();
-    abstract function previousPage();
+    abstract function nextPage(SifterCurl $curl);
+    abstract function previousPage(SifterCurl $curl);
 
     /**
      * Get current page number

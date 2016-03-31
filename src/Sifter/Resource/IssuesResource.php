@@ -72,29 +72,35 @@ class IssuesResource extends Resource {
 
     /**
      * Get an IssueResource containing the next page of issues, else return false if no next page
+     *
+     * @param SifterCurl $curl
+     *
      * @return bool|IssuesResource
      * @throws \Exception
      */
-    public function nextPage()
+    public function nextPage(SifterCurl $curl)
     {
         if(parent::getNextPageUrl() == null) {
             return false;
         } else {
-            return $this->changePage(parent::getNextPageUrl());
+            return $this->changePage(parent::getNextPageUrl(), $curl);
         }
     }
 
     /**
      * Get an IssueResource containing the previous page of issues, else return false if no previous page
+     *
+     * @param SifterCurl $curl
+     *
      * @return bool|IssuesResource
      * @throws \Exception
      */
-    public function previousPage()
+    public function previousPage(SifterCurl $curl)
     {
         if(parent::getPreviousPageUrl() == null) {
             return false;
         } else {
-            return $this->changePage(parent::getPreviousPageUrl());
+            return $this->changePage(parent::getPreviousPageUrl(), $curl);
         }
     }
 
