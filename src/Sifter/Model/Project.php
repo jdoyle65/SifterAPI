@@ -63,6 +63,14 @@ class Project {
     }
 
     /**
+     * Get Sifter project ID
+     * @return mixed
+     */
+    public function getId() {
+        return preg_filter('/.*\/projects\/([0-9]*)/', '$1', $this->getUrl());
+    }
+
+    /**
      * Get name of company associated with project
      * @return string
      */
