@@ -72,10 +72,10 @@ class Sifter
      * @return array
      * @throws \Exception
      */
-    public static function statuses()
+    public static function statuses(SifterCurl $curl)
     {
         if(self::$statuses === null) {
-            self::$statuses = self::buildStatuses();
+            self::$statuses = self::buildStatuses($curl);
         }
         return self::$statuses;
     }
@@ -85,10 +85,10 @@ class Sifter
      * @return array
      * @throws \Exception
      */
-    public static function priorities()
+    public static function priorities(SifterCurl $curl)
     {
         if(self::$priorities === null) {
-            self::$priorities = self::buildPriorities();
+            self::$priorities = self::buildPriorities($curl);
         }
         return self::$priorities;
     }
